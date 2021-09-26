@@ -32,13 +32,18 @@ services:
       
             
       volumes:
-        #- my_sql:/var/lib/mysql
+        - my_sql:/var/lib/mysql
         - ./data.sql:/docker-entrypoint-initdb.d/data.sql
       networks:
         - backend
     
-# volumes:
-#     my_sql:
+
+    # server:
+    #    image: 
+    
+    
+volumes:
+    my_sql:
 networks:
     frontend:
     backend:
