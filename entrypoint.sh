@@ -1,6 +1,6 @@
 #!/bin/sh
 
-./wait-for mysql:3306 
+./wait-for http://mysql:3306 
 
 
 # #cd ./target

@@ -1,6 +1,6 @@
-#FROM maven:3.6.1-jdk-8-alpine
-# EXPOSE 8080
-FROM openjdk:8-jre-alpine
+FROM maven:3.6.1-jdk-8-alpine
+
+#FROM openjdk:8-jre-alpine
 EXPOSE 8080
 #RUN mvn verify
 
@@ -17,6 +17,9 @@ WORKDIR /app
 
 RUN chmod +x entrypoint.sh
 
+WORKDIR /app/src/main/
+RUN rm -rf webapp
+WORKDIR /app
 
 # Execute the web archive
 ENTRYPOINT  ["./entrypoint.sh"]
