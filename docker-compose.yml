@@ -7,9 +7,7 @@ services:
       volumes:
         - ./nginx.conf:/etc/nginx/nginx.conf
         - ./src/main/webapp/setup/index.html:/usr/share/nginx/html/index.html
-        - "/home/pinhas/Documents/pinhas_lavagna/lavagna/project/src/main/webapp:/usr/share/nginx/html/static/"
-      # ports:
-      #   - 8080:8080
+        - "./src/main/webapp:/usr/share/nginx/html/static/"
       networks:
         - frontend
 
@@ -28,22 +26,28 @@ services:
       environment: 
              MYSQL_ROOT_PASSWORD: pass
       # ports:
-      #     - "81:3306"
-      
+      #     - "81:3306" 
             
       volumes:
-        - my_sql:/var/lib/mysql
+        - my_db:/var/lib/mysql
         - ./data.sql:/docker-entrypoint-initdb.d/data.sql
       networks:
         - backend
     
 
-    # server:
-    #    image: 
+    server:
+      image: "my_doc"
+      build:
+       context: .
+       dockerfile: Dockerfile_docu
+      ports:
+        - "8081:45001" 
+
     
     
 volumes:
-    my_sql:
+    my_db:
+
 networks:
     frontend:
     backend:

@@ -1,0 +1,7 @@
+FROM maven:3.6.1-jdk-8-alpine
+WORKDIR /app
+COPY . .
+RUN mvn clean stampo:build
+
+ENTRYPOINT ["/bin/sh", "-c"," mvn stampo:serve " ]
+
